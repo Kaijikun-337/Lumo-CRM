@@ -1,0 +1,1 @@
+# Light weight CRM for sole or team usage.
