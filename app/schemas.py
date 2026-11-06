@@ -70,4 +70,19 @@ class TaskResponse(BaseResponseSchema):
     project_id: int
     lead_id: int | None = None
     milestone_id: int | None = None
-    parent_id: int | None = None    
+    parent_id: int | None = None
+
+class UserCreate(BaseModel):
+    name: str
+    email: str
+    password: str
+
+class UserResponse(BaseResponseSchema):
+    id: int
+    name: str
+    email: str
+    is_active: bool
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str = "bearer"

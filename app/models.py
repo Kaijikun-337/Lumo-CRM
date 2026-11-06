@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Enum, JSON, DateTime, Text, Table
+from sqlalchemy import Column, Integer, String, ForeignKey, Enum, JSON, DateTime, Text, Table, Boolean
 from sqlalchemy.orm import declarative_base, relationship, backref
 import enum
 from datetime import datetime
@@ -26,6 +26,9 @@ class User(Base):
     name = Column(String(100), index=True, nullable=False)
     email = Column(String(100), nullable=False, index=True, unique=True)
     hashed_password = Column(String(255), nullable=False)
+    is_active = Column(Boolean, default=True)
+    
+    owned_projects = relationship("Project", back_populates="owner", cascade="all, delete-orphan")
     
     projects = relationship("Project", secondary=project_members, back_populates="members")
     
@@ -35,7 +38,9 @@ class Project(Base):
     id = Column(Integer, primary_key=True, nullable=False, index=True)
     name = Column(String(150), nullable=False)
     description = Column(String(150), nullable=True)
+    owner_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     
+    owner = relationship("User", back_populates="owned_projects")
     members = relationship("User", secondary=project_members, back_populates="projects")
     sources = relationship("Source", back_populates="project", cascade="all, delete-orphan")
     leads = relationship("Lead", back_populates="project", cascade="all, delete-orphan")
