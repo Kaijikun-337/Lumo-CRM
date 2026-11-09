@@ -4,6 +4,12 @@ A production-ready, asynchronous multi-tenant CRM engine and lead ingestion plat
 
 Lumo CRM features dynamic payload parsing, strict tenant isolation across all endpoints, background task queueing with full payload audit logging, and an embedded single-page dashboard.
 
+  ![Lumo CRM dashboard](assets/dashboard.png)
+  ![Lumo CRM projects and sources](assets/projects.png)
+  ![Lumo CRM leads pipeline](assets/leads.png)
+  ![Lumo CRM ingestion and logs](assets/ingestion.png)
+  ![Lumo CRM api and auth settings](assets/api.png)
+
 ---
 
 ## Key Features
